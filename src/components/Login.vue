@@ -18,7 +18,7 @@
       <form @submit.prevent="performLogin" id="" class="mb-4" action="#" method="POST">
         <div class="mb-4">
           <label for="email" class="mb-2 inline-block text-xs font-medium uppercase text-gray-700">Email or Username</label>
-          <input type="text" v-model="username" class="block w-full cursor-text appearance-none rounded-md border border-gray-400 bg--100 py-2 px-3 text-sm outline-none focus:border-indigo-500 focus:bg-white focus:text-gray-600 focus:shadow" id="email" name="email-username" placeholder="Enter your email or username" autofocus="" />
+          <input type="text" v-model="email" class="block w-full cursor-text appearance-none rounded-md border border-gray-400 bg--100 py-2 px-3 text-sm outline-none focus:border-indigo-500 focus:bg-white focus:text-gray-600 focus:shadow" id="email" name="email-username" placeholder="Enter your email or username" autofocus="" />
         </div>
         <div class="mb-4">
           <div class="flex justify-between">
@@ -60,7 +60,7 @@ import { mapActions } from 'vuex';
 export default {
   data() {
       return {
-          username: '',
+          email: '',
           password: '',
       };
   },
@@ -68,7 +68,7 @@ export default {
       ...mapActions('auth', ['login']),
       async performLogin() {
           const credentials = {
-              username: this.username,
+              email: this.email,
               password: this.password,
           };
 

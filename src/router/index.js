@@ -5,7 +5,10 @@ import Forgot from '../components/Forgot.vue';
 import Home from '../views/Home.vue';
 import Product from '../views/Product.vue';
 import Cart from '../views/Cart.vue';
-import Contact from '../views/Contact.vue'
+import Contact from '../views/Contact.vue';
+import Brands from '../views/Brands.vue';
+import Category from '../views/Category.vue';
+import SingleProduct from '../views/SingleProduct.vue'
 
 const routes = [
     {
@@ -42,6 +45,22 @@ const routes = [
         path: '/contact',
         name: 'Contact',
         component: Contact
+    },
+    {
+        path: '/brands',
+        name: 'Brands',
+        component: Brands
+    },
+    {
+        path: '/category',
+        name: 'Category',
+        component: Category
+    },
+    {
+        path: '/product/:slug',
+        name: 'SingleProduct',
+        component: SingleProduct,
+        props: true
     },
 ]
 
