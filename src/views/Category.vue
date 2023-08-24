@@ -1,4 +1,5 @@
 <template>
+  <Navbar></Navbar>
     <section class="py-10">
   <div class="mx-auto grid max-w-screen-lg justify-center px-4 sm:grid-cols-2 sm:gap-4 sm:px-8 md:grid-cols-3">
     
@@ -21,11 +22,13 @@
 </div>
   </div>
 </section>
-
+<Footer></Footer>
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
+import Navbar from '../components/Navbar.vue';
+import Footer from '../components/Footer.vue';
 
 
 export default {
@@ -38,5 +41,10 @@ export default {
     created() {
         this.fetchCategory();
     },
+    components: {
+    Navbar,
+    Footer,
+
+}
 }
 </script>

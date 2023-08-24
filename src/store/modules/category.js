@@ -7,7 +7,7 @@ const category = {
     },
     getters: {
         getCategory: (state) => state.categoryData,
-    },
+        },
     actions: {
         async fetchCategory({ commit }) {
             try {

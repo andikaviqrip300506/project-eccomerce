@@ -1,14 +1,19 @@
 <template>
+  <Navbar></Navbar>
   <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,300;0,400;1,600&display=swap" rel="stylesheet" />
 <div class="w-screen">
+  
   <div class="relative mx-auto flex flex-col px-4 sm:max-w-xl md:max-w-screen-xl md:flex-row">
     <!-- Left Column -->
     <div class="my-auto mx-auto mt-8 w-full max-w-xl md:mt-56 lg:max-w-screen-xl ">
       <div class="mb-16 lg:mb-0 lg:max-w-lg">
         <div class="mb-6 max-w-xl">
+          
           <div>
+            
             <p class="bg-teal-accent-400 mb-2 inline-block rounded-full px-3 py-px text-xs font-semibold uppercase tracking-wider text-red-900"><u>Road To Kemerdekaan</u></p>
           </div>
+          
           <h2 class="mb-6 max-w-lg text-3xl font-bold tracking-tight text-slate-700 sm:text-5xl sm:leading-snug">
             Disc All Product<br />
             <span class="inline-block font-bold text-gray-600">Only Independence Day</span>
@@ -185,9 +190,26 @@
 
 <br>
 <br>
-
+<div>
+    <square loading="isLoading"></square>
+  </div>
+<Footer></Footer>
 </template>
 
 <script>
+import Navbar from '../components/Navbar.vue';
+import Footer from '../components/Footer.vue';
 
+
+export default {
+  data(){
+return {
+      isLoading: true
+    }
+  },
+  components: {
+      Navbar,
+      Footer
+    }
+}
 </script>

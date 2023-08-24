@@ -28,7 +28,7 @@ const product = {
                 const response = await axios.get(
                     `https://ecommerce.olipiskandar.com/api/v1/product/details/${slug}`
                 );
-                commit ("SET_SINGLE_PRODUCT", response.data);
+                commit ("SET_SINGLE_PRODUCT", response.data['data']);
             } catch (error) {
                 alert(error);
                 console.log(error);

@@ -4,7 +4,9 @@ const auth = {
   namespaced: true,
   state: {
     token: localStorage.getItem("token") || "",
-    user: JSON.parse(localStorage.getItem("user")) || "",
+    loginError: null,
+
+    
   },
   getters: {
     isAuthenticated: (state) => !!state.token,
@@ -29,6 +31,33 @@ const auth = {
         commit("SET_USER", user);
         console.log(user)
 
+        commit("SET_LOGIN_ERROR", null);
+
+        return true;
+      } catch (error) {
+        const errorMessage = error.response.data.message || "Login Failed";
+        commit("SET_LOGIN_ERROR", errorMessage)
+        console.error(error);
+        return false;
+      }
+    },
+    async register({ commit }, credentials) {
+      try {
+        const response = await axios.post(
+          "https://ecommerce.olipiskandar.com/api/v1/auth/signup",
+          credentials
+        );
+        const token = response.data.access_token;
+
+        console.log(credentials)
+        commit("SET_TOKEN", token);
+        console.log("Token saved:", token);
+
+        // Save token to localStorage
+        localStorage.setItem("token", token);
+ 
+
+
         return true;
       } catch (error) {
         console.error(error);
@@ -50,9 +79,9 @@ const auth = {
     SET_TOKEN(state, token) {
       state.token = token;
     },
-    SET_USER(state, user) {
-      state.user = user
-    }
+    SET_LOGIN_ERROR(state, error) {
+      state.loginError = error;
+    },
   },
 };
 

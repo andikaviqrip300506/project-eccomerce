@@ -1,4 +1,5 @@
 <template>
+  <Navbar></Navbar>
     <br>
     <div class="font-sans text-base text-gray-900 sm:px-10">
   <div class="text-base text-gray-900">
@@ -53,8 +54,17 @@
 <br>
 <br>
 <br>
+<Footer></Footer>
 </template>
 
 <script>
+import Navbar from '../components/Navbar.vue';
+import Footer from '../components/Footer.vue';
 
+export default {
+  components: {
+      Navbar,
+      Footer
+    }
+}
 </script>

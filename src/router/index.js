@@ -8,7 +8,10 @@ import Cart from '../views/Cart.vue';
 import Contact from '../views/Contact.vue';
 import Brands from '../views/Brands.vue';
 import Category from '../views/Category.vue';
-import SingleProduct from '../views/SingleProduct.vue'
+import SingleProduct from '../views/SingleProduct.vue';
+import Profile from '../views/Profile.vue';
+import store from "../store";
+
 
 const routes = [
     {
@@ -57,6 +60,12 @@ const routes = [
         component: Category
     },
     {
+        path: '/profile',
+        name: 'Profile',
+        component: Profile,
+        meta: { requireProfile: true }
+    },
+    {
         path: '/product/:slug',
         name: 'SingleProduct',
         component: SingleProduct,
@@ -68,5 +77,14 @@ const router = createRouter({
     history: createWebHistory(),
     routes,
 });
+
+router.beforeEach((to, from, next) => {
+    if (to.meta.requireProfile && !store.getters["auth/isAuthenticated"]) {
+        next("/login");
+    } else {
+        next()
+    }
+});
+
 
 export default router;

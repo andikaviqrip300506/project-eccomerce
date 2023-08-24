@@ -3,6 +3,8 @@ import auth from "./modules/auth";
 import brands from "./modules/brands"
 import category from "./modules/category";
 import product from "./modules/product";
+import profile from "./modules/profile";
+import cart from "./modules/cart";
 
 
 const store = createStore({
@@ -13,7 +15,9 @@ const store = createStore({
         auth,
         brands,
         category,
-        product
+        product,
+        profile,
+        cart 
     }
 });
 

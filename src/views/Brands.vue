@@ -1,4 +1,5 @@
 <template>
+  <Navbar></Navbar>
 <section class="bg-white py-6 sm:py-8 lg:py-12">
   <div class="mx-auto max-w-screen-xl px-4 md:px-8"> 
     <!-- Heading -->
@@ -39,11 +40,13 @@
     </div>
   </div>
 </section>
-
+<Footer></Footer>
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
+import Navbar from '../components/Navbar.vue';
+import Footer from '../components/Footer.vue';
 
 
 export default {
@@ -56,5 +59,9 @@ export default {
     created() {
         this.fetchBrands();
     },
+    components: {
+      Navbar,
+      Footer
+    }
 }
 </script>
