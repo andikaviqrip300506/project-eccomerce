@@ -1,48 +1,49 @@
 <template>
   <Navbar></Navbar>
-<section class="h-screen bg-gray-100 py-12 sm:py-16 lg:py-20">
-      <div class="mx-2 my-10 rounded-xl border bg-white px-4 shadow-md sm:mx-auto sm:max-w-xl sm:px-8">
-  <div class="mb-2 flex flex-col gap-y-6 border-b py-8 sm:flex-row sm:items-center sm:justify-between">
-    <div class="flex items-center">
-      <img class="h-14 w-14 rounded-full object-cover" src="../assets/image/andika.jpg" alt="Simon Lewis" />
-      <div class="ml-4 w-56">
-        <p class="text-slate-800 text-xl font-extrabold"> {{ getUserData.name }}</p>
-        <p class="text-slate-500">{{ getUserData.email }}</p>
+  <div class="max-w-4xl flex items-center h-auto lg:h-screen flex-wrap mx-auto my-32 lg:my-0">
+    
+    <!--Main Col-->
+    <div id="profile" class="w-full lg:w-3/5 rounded-lg lg:rounded-l-lg lg:rounded-r-none bg-white opacity-75 mx-6 lg:mx-0">
+    
+  
+      <div class="p-4 md:p-12 text-center lg:text-left">
+        <!-- Image for mobile view-->
+        <div class="block lg:hidden rounded-full mx-auto -mt-16 h-48 w-48 bg-cover bg-center" style="background-image: url('https://randomuser.me/api/portraits/lego/0.jpg')"></div>
+        <div v-for="get in address.data">
+        <h1 class="text-3xl font-bold pt-8 lg:pt-0">{{ getUserData.name }}</h1>
+        <div class="mx-auto lg:mx-0 w-4/5 pt-3 border-b-2 border-teal-500 opacity-25"></div>
+        <p class="pt-4 text-base font-bold flex items-center justify-center lg:justify-start"><img class="mr-3" src="../assets/image/gm.jpg" width="40" height="40">{{ getUserData.email }}</p>
+        <p class="pt-2 text-gray-600 text-xs lg:text-sm flex items-center justify-center lg:justify-start"><img class="mr-3" src="../assets/image/map.avif" width="40" height="40">
+          {{ get.address }} {{ get.city }} {{ get.state }} {{ get.postal_code }}
+          <a href="https://what3words.com/after.takes.shorts" target="_blank"><u></u></a></p>
+        <p class="pt-8 text-sm"><b>$ {{ getUserData.balance }} Balance</b></p>
+        </div>
+        <div class="pt-12 pb-8">
+          <button @click="logout" class="bg-red-700 hover:bg-red-800 hover:text-white text-white font-bold py-2 px-4 rounded-full">
+           Logout
+          </button> 
+        </div>
+  
+        <div class="mt-6 pb-16 lg:pb-0 w-4/5 lg:w-full mx-auto flex flex-wrap items-center justify-between">
+          <a class="link opacity-100 hover:opacity-50" href="/cart" target="_blank"><img src="../assets/image/cart.png" width="40" height="40"></a>
+         
+        </div>
+  
       </div>
+  
     </div>
-    <button class="flex items-center justify-center gap-1 rounded-lg border border-emerald-500 px-4 py-2 font-medium text-emerald-500 focus:outline-none focus:ring hover:bg-emerald-100">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-4 w-4">
-        <path d="M11.645 20.91l-.007-.003-.022-.012a15.247 15.247 0 01-.383-.218 25.18 25.18 0 01-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0112 5.052 5.5 5.5 0 0116.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 01-4.244 3.17 15.247 15.247 0 01-.383.219l-.022.012-.007.004-.003.001a.752.752 0 01-.704 0l-.003-.001z" />
-      </svg>
-
-      <span>Online</span>
-    </button>
+    
+    <!--Img Col-->
+    <div class="w-full lg:w-2/5">
+      <!-- Big profile image for side bar (desktop) -->
+      <img src="https://randomuser.me/api/portraits/lego/0.jpg" class="rounded-none lg:rounded-lg hidden lg:block">
+      <!-- Image from: http://unsplash.com/photos/MP0IUfwrn0A -->
+      
+    </div>
+  
+  
   </div>
-  <div class="mb-2 flex justify-between border-b py-8 text-sm sm:text-base">
-    <div class="flex flex-col items-center">
-      <p class="text-slate-700 mb-1 text-xl font-extrabold">14</p>
-      <p class="text-slate-500 text-sm font-medium">Posts</p>
-    </div>
-    <div class="flex flex-col items-center">
-      <p class="text-slate-700 mb-1 text-xl font-extrabold">1124</p>
-      <p class="text-slate-500 text-sm font-medium">Followers</p>
-    </div>
-    <div class="flex flex-col items-center">
-      <p class="text-slate-700 mb-1 text-xl font-extrabold">25</p>
-      <p class="text-slate-500 text-sm font-medium">Sponsors</p>
-    </div>
-    <div class="flex flex-col items-center">
-      <p class="text-slate-700 mb-1 text-xl font-extrabold">3</p>
-      <p class="text-slate-500 text-sm font-medium">Awards</p>
-    </div>
-  </div>
-  <div class="flex justify-between py-8">
-    <button class="text-slate-500 hover:bg-slate-100 rounded-lg border-2 px-4 py-2 font-medium focus:outline-none focus:ring">Message</button>
-    <button @click="logout" class="rounded-lg border-2 border-transparent bg-red-600 px-4 py-2 font-medium text-white focus:outline-none focus:ring hover:bg-red-700">Logout</button>
-  </div>
-</div>
-</section>
-</template>
+</template>  
 
 <script>
 import { mapActions, mapGetters } from 'vuex';
@@ -51,10 +52,26 @@ import Navbar from '../components/Navbar.vue';
 export default {
   computed: {
     ...mapGetters('profile', ['getUserData']),
+    ...mapGetters('auth', ['gettersUserAddress']),
+    ...mapGetters('cart', ['getCart']),
+
+    address() {
+      return this.gettersUserAddress;
+    },
   },
   methods: {
     ...mapActions('profile', ['fetchUser']),
     ...mapActions('auth', ['logout']),
+    ...mapActions('cart', ['fetchCart']),
+    ...mapActions('auth', ['getUserAddress']),
+  },
+  async mounted() {
+    this.getUserAddress();
+    const user = await this.fetchUser();
+
+    if (user) {
+      this.$store.commit('profile/SET_USER', user);
+    }
   },
   created() {
     this.fetchUser();

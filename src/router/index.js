@@ -10,6 +10,8 @@ import Brands from '../views/Brands.vue';
 import Category from '../views/Category.vue';
 import SingleProduct from '../views/SingleProduct.vue';
 import Profile from '../views/Profile.vue';
+import Checkout from '../views/Checkout.vue';
+import Order from '../views/Order.vue'
 import store from "../store";
 
 
@@ -60,6 +62,18 @@ const routes = [
         component: Category
     },
     {
+        path: '/order/:orderCode',
+        name: 'Order',
+        component: Order,
+        props: true,
+      },
+    {
+        path: '/checkout',
+        name: 'Checkout',
+        component: Checkout,
+        meta: { requiresLogin: true },
+    },
+    {
         path: '/profile',
         name: 'Profile',
         component: Profile,
@@ -85,6 +99,14 @@ router.beforeEach((to, from, next) => {
         next()
     }
 });
+
+router.beforeEach((to, from, next) => {
+    if (to.meta.requiresLogin && !store.getters["auth/isAuthenticated"]) {
+      next("/login");
+    } else {
+      next();
+    }
+  });
 
 
 export default router;

@@ -1,86 +1,154 @@
 <template>
   <Navbar></Navbar>
-  <section class="h-screen bg-gray-100 py-12 sm:py-16 lg:py-20">
-  <div class="mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex items-center justify-center">
-      <h1 class="text-2xl font-semibold text-gray-900">Your Cart</h1>
-    </div>
+  <div>
+    <div class="h-screen bg-gray-50 pt-20">
+      <h1 class="mb-10 text-center text-2xl font-bold">Cart Items</h1>
+      <div v-if="totalHarga != 0">
+        <div
+          class="mx-auto max-w-5xl justify-center px-6 md:flex md:space-x-6 xl:px-0"
+        >
+          <div class="md:w-2/3">
+            <div v-for="cart in getCart" :key="cart.id">
+              <div
+                class="justify-between mb-6 ring ring-gray-900 transition delay-75 p-6 sm:flex sm:justify-start"
+              >
+                <img
+                  src="../assets/image/scmm3.webp"
+                  alt="product-image"
+                  class="w-40"
+                />
+                <div class="sm:ml-4 sm:flex sm:w-full sm:justify-between">
+                  <div class="mt-5 sm:mt-0">
+                    <h2 class="text-lg font-bold text-gray-900">
+                      {{ cart.name }}
+                    </h2>
+                    <p class="mt-1 text-xs text-gray-700">
+                      {{ cart.cart_id }}
+                    </p>
+                  </div>
+                  <div
+                    class="mt-4 flex justify-between sm:space-y-6 sm:mt-0 sm:block sm:space-x-6"
+                  >
+                    <div
+                      class="flex items-center gap-1 my-2 border border-gray-900 w-[144px]"
+                    >
+                      <button
+                        @click="changeQuantity({cartId: cart.cart_id, typeQty: 'minus'})"
+                        type="button"
+                        class="w-10 h-10 leading-10 text-gray-600 hover:bg-gray-900 hover:text-white transition"
+                      >
+                        &minus;
+                      </button>
 
-    <div class="mx-auto mt-8 max-w-md md:mt-12">
-      <div class="rounded-3xl bg-white shadow-lg">
-        <div class="px-4 py-6 sm:px-8 sm:py-10">
-          <div class="flow-root">
-            <ul class="-my-8">
-              <li class="flex flex-col space-y-3 py-6 text-left sm:flex-row sm:space-x-5 sm:space-y-0">
-                <div class="shrink-0 relative">
-                  <span class="absolute top-1 left-1 flex h-6 w-6 items-center justify-center rounded-full border bg-white text-sm font-medium text-gray-500 shadow sm:-top-2 sm:-right-2">1</span>
-                  <img class="h-24 w-24 max-w-full rounded-lg object-cover" src="https://images.unsplash.com/photo-1588484628369-dd7a85bfdc38?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTh8fHNuZWFrZXJ8ZW58MHx8MHx8&auto=format&fit=crop&w=150&q=60" alt="" />
-                </div>
-
-                <div class="relative flex flex-1 flex-col justify-between">
-                  <div class="sm:col-gap-5 sm:grid sm:grid-cols-2">
-                    <div class="pr-8 sm:pr-5">
-                      <p class="text-base font-semibold text-gray-900">Nike Air Max 2019</p>
-                      <p class="mx-0 mt-1 mb-0 text-sm text-gray-400">36EU - 4US</p>
+                     <font color="">
+                      <input
+                        type="number"
+                        id="Quantity"
+                        :value="cart.qty"
+                        class="h-10 w-16 rounded bg-gray-300 border border-none text-center [-moz-appearance:_textfield] sm:text-sm [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none"
+                      /> 
+                      </font>
+  
+                      <button
+                      @click="changeQuantity({cartId: cart.cart_id, typeQty: 'plus'})"
+                        type="button"
+                        class="w-10 h-10 leading-10 hover:bg-gray-900 hover:text-white transition"
+                      >
+                        &plus;
+                      </button>
                     </div>
-
-                    <div class="mt-4 flex items-end justify-between sm:mt-0 sm:items-start sm:justify-end">
-                      <p class="shrink-0 w-20 text-base font-semibold text-gray-900 sm:order-2 sm:ml-8 sm:text-right">$1259.00</p>
+                    <div class="flex items-center space-x-4">
+                      <p class="text-sm">Rp. {{ cart.regular_price * cart.qty }}</p>
+                      <div @click="removeItem(cart.cart_id)">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke-width="1.5"
+                          stroke="currentColor"
+                          class="h-5 w-5 cursor-pointer duration-150 hover:text-red-500"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="M6 18L18 6M6 6l12 12"
+                          />
+                        </svg>
+                      </div>
                     </div>
                   </div>
-
-                  <div class="absolute top-0 right-0 flex sm:bottom-0 sm:top-auto">
-                    <button type="button" class="flex rounded p-2 text-center text-gray-500 transition-all duration-200 ease-in-out focus:shadow hover:text-gray-900">
-                      <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" class=""></path>
-                      </svg>
-                    </button>
-                  </div>
                 </div>
-              </li>
-          
-         </ul>
-         </div>
-
-          <!-- <hr class="mx-0 mt-6 mb-0 h-0 border-r-0 border-b-0 border-l-0 border-t border-solid border-gray-300" /> -->
-
-          <div class="mt-6 space-y-3 border-t border-b py-8">
-            <div class="flex items-center justify-between">
-              <p class="text-gray-400">Subtotal</p>
-              <p class="text-lg font-semibold text-gray-900">$2399.00</p>
-            </div>
-            <div class="flex items-center justify-between">
-              <p class="text-gray-400">Shipping</p>
-              <p class="text-lg font-semibold text-gray-900">$8.00</p>
+              </div>
             </div>
           </div>
-          <div class="mt-6 flex items-center justify-between">
-            <p class="text-sm font-medium text-gray-900">Total</p>
-            <p class="text-2xl font-semibold text-gray-900"><span class="text-xs font-normal text-gray-400">USD</span> 2499.00</p>
-          </div>
-
-          <div class="mt-6 text-center">
-            <button type="button" class="group inline-flex w-full items-center justify-center rounded-md bg-gray-500 px-6 py-4 text-lg font-semibold text-white transition-all duration-200 ease-in-out focus:shadow hover:bg-gray-800">
-              Place Order
-              <svg xmlns="http://www.w3.org/2000/svg" class="group-hover:ml-8 ml-4 h-6 w-6 transition-all" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-              </svg>
+          <!-- Sub total -->
+          <div
+            class="mt-6 h-full border border-gray-950 bg-white p-6 shadow-md md:mt-0 md:w-1/3"
+          >
+            <div class="mb-2 flex justify-between">
+              <p class="text-gray-700">Total Belanja</p>
+              <p class="text-gray-700">Rp. {{ totalHarga() }} </p>
+            </div>
+            <div class="flex justify-between">
+              <p class="text-gray-700">Biaya Jasa</p>
+              <p class="text-gray-700">Rp. </p>
+            </div>
+            <hr class="my-4" />
+            <div class="flex justify-between">
+              <p class="text-lg font-bold">Total Harga</p>
+              <div class="">
+                <p class="mb-1 text-lg font-bold">Rp. </p>
+              </div>
+            </div>
+            <button
+              class="mt-6 w-full bg-gray-900 border border-gray-900 transition py-1.5 font-medium text-blue-50"
+            ><router-link to="/checkout">Checkout</router-link>
+              
             </button>
           </div>
         </div>
       </div>
+      <div v-else>
+        <p class="text-center">Keranjang anda kosong silahkan, belanja terlebih dahulu</p>
+      </div>
     </div>
   </div>
-</section>
 
-   
 </template>
-
 <script>
+import { mapGetters, mapActions } from 'vuex';
 import Navbar from '../components/Navbar.vue';
 import Footer from '../components/Footer.vue';
 
 export default {
+  computed: {
+    ...mapGetters('cart', ['getCart']),
+  },
+  methods: {
+    ...mapActions('cart', ['fecthCart']),
+    ...mapActions('product', ['fetchProduct']),
+
+    totalHarga() {
+      this.total = this.getCart.reduce((acc, product) => {
+        return acc + parseFloat(product.regular_price * product.qty);
+      }, 0);
+      return this.total.toFixed(2);
+      
+    },
+    removeItem(cartId) {
+      this.$store.dispatch('cart/removeFromCart', cartId);
+    },
+    changeQuantity(cartId, typeQty) {
+      this.$store.dispatch('cart/changeQuantityCart', cartId, typeQty);
+    }
+  },
+  beforeMount() {
+    this.fetchProduct();
+    this.fecthCart();
+  },
+  mounted() {
+    this.fecthCart();
+  },
   components: {
       Navbar,
       Footer

@@ -5,8 +5,7 @@ import category from "./modules/category";
 import product from "./modules/product";
 import profile from "./modules/profile";
 import cart from "./modules/cart";
-
-
+import order from "./modules/order";
 const store = createStore({
     state: {
         isLoading: false,
@@ -17,7 +16,8 @@ const store = createStore({
         category,
         product,
         profile,
-        cart 
+        cart,
+        order
     }
 });
 
