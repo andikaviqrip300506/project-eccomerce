@@ -202,12 +202,7 @@
   import {  mapState, mapGetters } from 'vuex';
   
   export default {
-    data() {
-      return {
-        token: null,
-        cek: 1
-      }
-    },
+ 
     props: ['orderCode'],
     computed: {
         ...mapState('product', ['getProductId']),

@@ -1,8 +1,8 @@
 <template>
   <Navbar></Navbar>
-  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,300;0,400;1,600&display=swap" rel="stylesheet" />
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 <div class="w-screen">
-  
+ 
   <div class="relative mx-auto flex flex-col px-4 sm:max-w-xl md:max-w-screen-xl md:flex-row">
     <!-- Left Column -->
     <div class="my-auto mx-auto mt-8 w-full max-w-xl md:mt-56 lg:max-w-screen-xl ">

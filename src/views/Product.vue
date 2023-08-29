@@ -4,7 +4,15 @@
   <br>
   <br>
   <center><hr class="mb-4 h-1.5 w-1/4 bg-gray-600" /></center>
-
+  <div v-if="getProduct == false">
+        <div class="h-screen bg-white">
+            <div class="flex justify-center items-center h-full">
+                <img class="h-16 w-16" src="https://icons8.com/preloaders/preloaders/1488/Iphone-spinner-2.gif" alt="">
+            </div>
+        </div>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,300;0,400;1,600&display=swap" rel="stylesheet" />
+  </div>
+  <div v-else>
   <div class="grid grid-cols-2 gap-2 m-14">
   <div class="m-10 mx-4 max-w-screen-lg overflow-hidden rounded-xl border shadow-lg md:pl-8">
 <div class="flex flex-col overflow-hidden bg-white sm:flex-row md:h-80">
@@ -88,6 +96,7 @@
       </a
     >
   </div>
+</div>
 </div>
 </div>
 </div>

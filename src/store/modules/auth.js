@@ -45,23 +45,18 @@ const auth = {
     },
     async register({ commit }, credentials) {
       try {
-        const response = await axios.post(
-          "https://ecommerce.olipiskandar.com/api/v1/auth/signup",
-          credentials
-        );
-        const token = response.data.access_token;
+        const registerUrl =
+          'https://ecommerce.olipiskandar.com/api/v1/auth/signup';
+        const responseRegister = await axios.post(registerUrl, credentials);
+        const token = responseRegister.data.access_token;
 
-        console.log(credentials)
-        commit("SET_TOKEN", token);
-        console.log("Token saved:", token);
-
-        // Save token to localStorage
-        localStorage.setItem("token", token);
- 
-
-
+        console.log(credentials);
+        console.log(token);
+        localStorage.setItem('token', token);
+        commit('SET_TOKEN', token);
         return true;
       } catch (error) {
+        alert(error);
         console.error(error);
         return false;
       }

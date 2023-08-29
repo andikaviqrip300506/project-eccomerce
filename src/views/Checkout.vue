@@ -76,7 +76,7 @@
       </div>
       <div class="mt-6 flex items-center justify-between">
         <p class="text-sm font-medium text-gray-900">Total</p>
-        <p class="text-2xl font-semibold text-gray-900">$408.00</p>
+        <p class="text-2xl font-semibold text-gray-900">${{  }}</p>
       </div>
     </div>
     <button @click="performCheckout" class="mt-4 mb-8 w-full rounded-md bg-gray-900 px-6 py-3 font-medium text-white">Place Order</button>
@@ -98,11 +98,14 @@ export default {
     },
   computed: {
     ...mapGetters('cart', ['getCart']),
+    ...mapGetters('order', ['getOrder']),
+    ...mapGetters('cart', ['getCheckout']),
   },
   methods: {
     ...mapActions('cart', ['fecthCart']),
     ...mapActions('product', ['fetchProduct']),
     ...mapActions('auth', ['getUserAddress']),
+
 
     totalHarga() {
       this.total = this.getCart.reduce((acc, product) => {
@@ -128,8 +131,10 @@ export default {
                 deliveryType: this.deliveryType,
                 cart_item_ids: cartItemIds
             };
-
-            await this.$store.dispatch('cart/checkoutCart', checkoutPayload);
+            await this.$store.dispatch('cart/checkoutCart', checkoutPayload)
+            .then(() => {
+             this.$router.push(`/order/${this.getCheckout.order_code}`);
+        });
         }
   },
   beforeMount() {

@@ -48,9 +48,9 @@ const product = {
                     'Authorization': `Bearer ${localStorage.getItem("token")}`
                 }
                 });
-                commit("ADD_TO_CART", response.data)
-                console.log(response.data)
-                alert("Success Add To Cart")
+                commit("ADD_TO_CART", response.data);
+                console.log(response.data);
+                alert("Success Add To Cart");
              
             } catch (error) {
               console.error(error);
